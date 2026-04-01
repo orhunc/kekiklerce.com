@@ -177,9 +177,8 @@ function initScrollSpy() {
   }
 }
 
-/* ── LAZY VIDEOS ── */
+/* ── VIDEOS ── */
 function initLazyVideos() {
-  var mainEl = document.getElementById('main');
   var iframes = document.querySelectorAll('iframe[data-src]');
   if (!iframes.length) return;
 
@@ -189,24 +188,12 @@ function initLazyVideos() {
     var loader = document.createElement('div');
     loader.className = 'video-loading';
     container.insertBefore(loader, iframe);
+    iframe.addEventListener('load', function() {
+      loader.style.opacity = '0';
+      setTimeout(function() { loader.remove(); }, 400);
+    }, { once: true });
+    iframe.src = iframe.dataset.src;
   });
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting) return;
-      var iframe = entry.target;
-      observer.unobserve(iframe);
-      iframe.src = iframe.dataset.src;
-      iframe.addEventListener('load', function() {
-        var loader = iframe.parentElement && iframe.parentElement.querySelector('.video-loading');
-        if (!loader) return;
-        loader.style.opacity = '0';
-        setTimeout(function() { loader.remove(); }, 400);
-      }, { once: true });
-    });
-  }, { root: mainEl || null, rootMargin: '300px' });
-
-  iframes.forEach(function(iframe) { observer.observe(iframe); });
 }
 
 /* ── INIT ── */
