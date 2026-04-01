@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484747\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484717\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484129\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178167629\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1179177672\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1179177903\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178796744\")",
+      "WebFetch(domain:vimeo.com)"
+    ]
+  }
+}
