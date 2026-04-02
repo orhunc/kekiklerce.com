@@ -196,10 +196,66 @@ function initLazyVideos() {
   });
 }
 
+/* ── VIDEO EXPAND ── */
+function initVideoExpand() {
+  // Create overlay
+  var overlay = document.createElement('div');
+  overlay.id = 'video-overlay';
+  var closeBtn = document.createElement('button');
+  closeBtn.id = 'video-overlay-close';
+  closeBtn.innerHTML = '&times;';
+  overlay.appendChild(closeBtn);
+  document.body.appendChild(overlay);
+
+  var activeIframe = null;
+  var originParent = null;
+  var originNext = null;
+  var originStyle = null;
+
+  function close() {
+    if (!activeIframe || !originParent) { overlay.classList.remove('open'); return; }
+    var iframe = activeIframe, parent = originParent, next = originNext, style = originStyle;
+    activeIframe = originParent = originNext = originStyle = null;
+    iframe.removeAttribute('style');
+    if (style) iframe.setAttribute('style', style);
+    if (next) parent.insertBefore(iframe, next);
+    else parent.appendChild(iframe);
+    overlay.classList.remove('open');
+  }
+
+  closeBtn.addEventListener('click', function(e) { e.stopPropagation(); close(); });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+
+  // Inject expand buttons into autoplay video containers
+  document.querySelectorAll('iframe[data-src*="background=1"]').forEach(function(iframe) {
+    var container = iframe.parentElement;
+    var btn = document.createElement('button');
+    btn.className = 'video-expand-btn';
+    btn.title = 'Expand';
+    btn.textContent = '\u26F6';
+    container.appendChild(btn);
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      activeIframe = iframe;
+      originParent = container;
+      originNext = iframe.nextSibling;
+      originStyle = iframe.getAttribute('style');
+      iframe.removeAttribute('style');
+      overlay.appendChild(iframe);
+      overlay.classList.add('open');
+    });
+  });
+}
+
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', function() {
   initGalleries();
   initLightbox();
   initLazyVideos();
+  initVideoExpand();
   initScrollSpy();
 });
