@@ -111,11 +111,12 @@ function initLightbox() {
 function initScrollSpy() {
   var mainEl   = document.getElementById('main');
   var navItems = document.querySelectorAll('.nav-item[data-entry]');
-  var entryEls = document.querySelectorAll('[id^="entry-"]');
+  var entryEls = Array.from(navItems).map(function(item) {
+    return document.getElementById(item.getAttribute('data-entry'));
+  }).filter(Boolean);
   if (!mainEl || entryEls.length === 0) return;
 
-  var entryIds = [];
-  entryEls.forEach(function(el) { entryIds.push(el.id.replace('entry-', '')); });
+  var entryIds = entryEls.map(function(el) { return el.id; });
 
   var isScrollingTo = false;
 
@@ -135,7 +136,7 @@ function initScrollSpy() {
     var threshold  = scrollTop + mainEl.clientHeight * 0.35;
     var best       = entryIds[0];
     entryIds.forEach(function(id) {
-      var el = document.getElementById('entry-' + id);
+      var el = document.getElementById(id);
       if (!el) return;
       var top = el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + scrollTop;
       if (top <= threshold) best = id;
@@ -143,30 +144,30 @@ function initScrollSpy() {
     updateActive(best);
   });
 
-  // Smooth scroll for same-page anchor clicks (#entry-xxx)
+  // Smooth scroll for same-page anchor clicks
   navItems.forEach(function(item) {
     item.addEventListener('click', function(e) {
       var href = this.getAttribute('href') || '';
-      if (!href.startsWith('#')) return; // cross-page link — let browser navigate
+      if (!href.startsWith('#')) return;
       e.preventDefault();
       var id = this.getAttribute('data-entry');
-      var el = document.getElementById('entry-' + id);
+      var el = document.getElementById(id);
       if (!el) return;
       isScrollingTo = true;
       var top = el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + mainEl.scrollTop - 64;
       mainEl.scrollTo({ top: top, behavior: 'smooth' });
       updateActive(id);
-      history.replaceState(null, '', '#entry-' + id);
+      history.replaceState(null, '', '#' + id);
       setTimeout(function() { isScrollingTo = false; }, 700);
     });
   });
 
-  // On page load: if URL has #entry-xxx, scroll to it
+  // On page load: if URL has a hash, scroll to it
   var hash = window.location.hash;
-  if (hash && hash.startsWith('#entry-')) {
+  if (hash) {
     setTimeout(function() {
-      var id = hash.replace('#entry-', '');
-      var el = document.getElementById('entry-' + id);
+      var id = hash.replace('#', '');
+      var el = document.getElementById(id);
       if (!el) return;
       isScrollingTo = true;
       var top = el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + mainEl.scrollTop - 64;
