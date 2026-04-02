@@ -706,3 +706,101 @@ body {
   letter-spacing: 0.04em;
   margin-top: 8px;
 }
+
+/* ── MOBILE HAMBURGER ── */
+#mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 10001;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 6px 9px;
+  cursor: pointer;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  #mobile-menu-btn { display: block; }
+
+  body { flex-direction: column; }
+
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 220px;
+    z-index: 10000;
+    background: var(--bg);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    padding-top: 56px;
+  }
+  #sidebar.mobile-open { transform: translateX(0); }
+
+  #mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  #mobile-backdrop.visible { opacity: 1; visibility: visible; }
+
+  #main {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .main-inner {
+    padding: 56px 20px 80px 20px;
+  }
+
+  /* Home */
+  #home-content {
+    margin: -56px -20px -80px;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  /* Entry layout */
+  .entry-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Workshop layout */
+  .entry.workshop-layout,
+  .workshop-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .entry.workshop-layout .entry-gallery-wrap,
+  .workshop-layout .entry-gallery-wrap {
+    margin-top: 24px;
+  }
+
+  /* Bio */
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Lightbox + overlays: full width */
+  #lightbox, #video-overlay { left: 0; }
+
+  /* Drag: titles */
+  .drag-title, .entry-title { font-size: 1.4rem; }
+
+  /* Gallery images: fit screen */
+  .gallery-track img { max-height: 360px; }
+
+  /* Entry separator */
+  .entry-separator { margin: 40px 0; }
+}
