@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484747\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484717\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178484129\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178167629\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1179177672\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1179177903\")",
+      "Bash(curl -s \"https://vimeo.com/api/oembed.json?url=https://vimeo.com/1178796744\")",
+      "WebFetch(domain:vimeo.com)",
+      "Bash(sed -i 's|content=\"\"Impressum and data privacy statement for orhunmersin.com.\"\"|content=\"\"Impressum and data privacy statement for kekiklerce.com.\"\"|' \"c:/Users/ocagl/Desktop/Workspaces/website/impressum/index.html\")",
+      "Bash(__NEW_LINE_5d68a22d0f557aa1__ for:*)",
+      "Bash(do)",
+      "Bash(sed -i '/<meta name=\"\"description\"\"/d' \"$f\")",
+      "Bash(done)"
+    ]
+  }
+}

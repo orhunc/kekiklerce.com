@@ -7,37 +7,37 @@
   </url>
   <url>
     <loc>https://kekiklerce.com/bio/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/drag/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/exhibitions/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/theatre/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/workshops/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/publications/</loc>
-    <priority>0.8</priority>
+    <priority>0.3</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://kekiklerce.com/impressum/</loc>
-    <priority>0.3</priority>
+    <priority>0.1</priority>
     <changefreq>yearly</changefreq>
   </url>
 </urlset>
