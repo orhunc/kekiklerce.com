@@ -13,7 +13,11 @@
       "Bash(__NEW_LINE_5d68a22d0f557aa1__ for:*)",
       "Bash(do)",
       "Bash(sed -i '/<meta name=\"\"description\"\"/d' \"$f\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(for f:*)",
+      "Bash(sed -i 's/aka kekik/a.k.a. kekik/g' \"$f\")",
+      "Bash(sed -i 's|<a class=\"\"sidebar-link\"\" href=\"\"../bio/\"\">bio</a>|<a class=\"\"sidebar-link\"\" href=\"\"../bio/\"\">bio — contact</a>|g' \"$f\")",
+      "Bash(sed -i 's|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio</a>|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio — contact</a>|g' \"$f\")"
     ]
   }
 }
