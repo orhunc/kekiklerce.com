@@ -192,6 +192,10 @@ function initLazyVideos() {
     iframe.addEventListener('load', function() {
       loader.style.opacity = '0';
       setTimeout(function() { loader.remove(); }, 400);
+      if (iframe.dataset.src && iframe.dataset.src.indexOf('background=1') !== -1 && window.Vimeo) {
+        var player = new Vimeo.Player(iframe);
+        player.setQuality('480p').catch(function() {});
+      }
     }, { once: true });
     iframe.src = iframe.dataset.src;
   });
