@@ -42,12 +42,14 @@ body {
   margin-bottom: 4px;
 }
 
+.sidebar-aka .kekik { color: var(--text-mid); letter-spacing: 0.06em; }
+
 .sidebar-aka {
   font-family: 'DM Mono', monospace;
   font-size: 0.58rem;
   font-weight: 300;
-  color: var(--text-faint);
-  letter-spacing: 0.06em;
+  color: var(--text-light);
+  letter-spacing: 0;
   margin-bottom: 36px;
 }
 
@@ -767,6 +769,12 @@ body {
     margin: -56px -20px -80px;
     height: 100vh;
     height: 100dvh;
+    align-items: center;
+    justify-content: center;
+  }
+  .home-image img {
+    object-fit: contain;
+    object-position: center center;
   }
 
   /* Entry layout */
