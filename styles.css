@@ -646,6 +646,11 @@ body {
 }
 .custom-video-controls button:hover { opacity: 1; }
 
+.custom-video-wrap:-webkit-full-screen { background: #000; display: flex; align-items: center; justify-content: center; }
+.custom-video-wrap:fullscreen { background: #000; display: flex; align-items: center; justify-content: center; }
+.custom-video-wrap:-webkit-full-screen video,
+.custom-video-wrap:fullscreen video { width: auto; height: 100%; max-width: 100%; object-fit: contain; }
+
 #video-overlay {
   position: fixed;
   top: 0;

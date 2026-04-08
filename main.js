@@ -315,8 +315,8 @@ function initCustomVideoControls() {
 
     if (expandBtn) {
       expandBtn.addEventListener('click', function() {
-        if (video.requestFullscreen) video.requestFullscreen();
-        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+        if (wrap.requestFullscreen) wrap.requestFullscreen();
+        else if (wrap.webkitRequestFullscreen) wrap.webkitRequestFullscreen();
       });
     }
   });
