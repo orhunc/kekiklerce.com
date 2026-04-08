@@ -315,8 +315,13 @@ function initCustomVideoControls() {
 
     if (expandBtn) {
       expandBtn.addEventListener('click', function() {
-        if (wrap.requestFullscreen) wrap.requestFullscreen();
-        else if (wrap.webkitRequestFullscreen) wrap.webkitRequestFullscreen();
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          if (document.exitFullscreen) document.exitFullscreen();
+          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        } else {
+          if (wrap.requestFullscreen) wrap.requestFullscreen();
+          else if (wrap.webkitRequestFullscreen) wrap.webkitRequestFullscreen();
+        }
       });
     }
   });
