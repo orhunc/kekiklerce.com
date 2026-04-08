@@ -293,6 +293,9 @@ function initMobileMenu() {
 
 /* ── CUSTOM VIDEO CONTROLS ── */
 function initCustomVideoControls() {
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
   document.querySelectorAll('.custom-video-wrap').forEach(function(wrap) {
     var video = wrap.querySelector('video');
     var playBtn = wrap.querySelector('.cvc-play');
@@ -303,9 +306,12 @@ function initCustomVideoControls() {
     video.muted = false;
     muteBtn.textContent = '🔊';
 
+    video.addEventListener('play', function() { playBtn.textContent = '⏸'; });
+    video.addEventListener('pause', function() { playBtn.textContent = '▶'; });
+
     playBtn.addEventListener('click', function() {
-      if (video.paused) { video.play(); playBtn.textContent = '⏸'; }
-      else { video.pause(); playBtn.textContent = '▶'; }
+      if (video.paused) video.play();
+      else video.pause();
     });
 
     muteBtn.addEventListener('click', function() {
@@ -315,7 +321,9 @@ function initCustomVideoControls() {
 
     if (expandBtn) {
       expandBtn.addEventListener('click', function() {
-        if (document.fullscreenElement || document.webkitFullscreenElement) {
+        if (isIOS) {
+          if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+        } else if (document.fullscreenElement || document.webkitFullscreenElement) {
           if (document.exitFullscreen) document.exitFullscreen();
           else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
         } else {
