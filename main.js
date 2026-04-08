@@ -212,19 +212,19 @@ function initVideoExpand() {
   overlay.appendChild(closeBtn);
   document.body.appendChild(overlay);
 
-  var activeIframe = null;
+  var activeMedia = null;
   var originParent = null;
   var originNext = null;
   var originStyle = null;
 
   function close() {
-    if (!activeIframe || !originParent) { overlay.classList.remove('open'); return; }
-    var iframe = activeIframe, parent = originParent, next = originNext, style = originStyle;
-    activeIframe = originParent = originNext = originStyle = null;
-    iframe.removeAttribute('style');
-    if (style) iframe.setAttribute('style', style);
-    if (next) parent.insertBefore(iframe, next);
-    else parent.appendChild(iframe);
+    if (!activeMedia || !originParent) { overlay.classList.remove('open'); return; }
+    var media = activeMedia, parent = originParent, next = originNext, style = originStyle;
+    activeMedia = originParent = originNext = originStyle = null;
+    media.removeAttribute('style');
+    if (style) media.setAttribute('style', style);
+    if (next) parent.insertBefore(media, next);
+    else parent.appendChild(media);
     overlay.classList.remove('open');
   }
 
@@ -235,8 +235,9 @@ function initVideoExpand() {
   });
 
   // Inject expand buttons into autoplay video containers
-  document.querySelectorAll('iframe[data-src*="background=1"]').forEach(function(iframe) {
-    var container = iframe.parentElement;
+  document.querySelectorAll('.autoplay-wrap').forEach(function(container) {
+    var media = container.querySelector('video');
+    if (!media) return;
     var btn = document.createElement('button');
     btn.className = 'video-expand-btn';
     btn.title = 'Expand';
@@ -245,12 +246,12 @@ function initVideoExpand() {
 
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      activeIframe = iframe;
+      activeMedia = media;
       originParent = container;
-      originNext = iframe.nextSibling;
-      originStyle = iframe.getAttribute('style');
-      iframe.removeAttribute('style');
-      overlay.appendChild(iframe);
+      originNext = media.nextSibling;
+      originStyle = media.getAttribute('style');
+      media.removeAttribute('style');
+      overlay.appendChild(media);
       overlay.classList.add('open');
     });
   });
@@ -290,12 +291,44 @@ function initMobileMenu() {
   });
 }
 
+/* ── CUSTOM VIDEO CONTROLS ── */
+function initCustomVideoControls() {
+  document.querySelectorAll('.custom-video-wrap').forEach(function(wrap) {
+    var video = wrap.querySelector('video');
+    var playBtn = wrap.querySelector('.cvc-play');
+    var muteBtn = wrap.querySelector('.cvc-mute');
+    var expandBtn = wrap.querySelector('.cvc-expand');
+    if (!video || !playBtn || !muteBtn) return;
+
+    video.muted = false;
+    muteBtn.textContent = '🔊';
+
+    playBtn.addEventListener('click', function() {
+      if (video.paused) { video.play(); playBtn.textContent = '⏸'; }
+      else { video.pause(); playBtn.textContent = '▶'; }
+    });
+
+    muteBtn.addEventListener('click', function() {
+      video.muted = !video.muted;
+      muteBtn.textContent = video.muted ? '🔇' : '🔊';
+    });
+
+    if (expandBtn) {
+      expandBtn.addEventListener('click', function() {
+        if (video.requestFullscreen) video.requestFullscreen();
+        else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+      });
+    }
+  });
+}
+
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', function() {
   initGalleries();
   initLightbox();
   initLazyVideos();
   initVideoExpand();
+  initCustomVideoControls();
   initScrollSpy();
   initMobileMenu();
 });
