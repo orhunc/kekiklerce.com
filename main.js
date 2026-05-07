@@ -335,6 +335,65 @@ function initCustomVideoControls() {
   });
 }
 
+/* ── HOME SECTION SCROLL SPY ── */
+function initHomeScrollSpy() {
+  var mainEl = document.getElementById('main');
+  if (!mainEl) return;
+
+  var sectionLinks = Array.from(document.querySelectorAll('.sidebar-link[data-section]'));
+  if (!sectionLinks.length) return;
+
+  var isScrollingTo = false;
+
+  function getTop(el) {
+    return el.getBoundingClientRect().top - mainEl.getBoundingClientRect().top + mainEl.scrollTop;
+  }
+
+  function updateActive() {
+    if (isScrollingTo) return;
+    var scrollTop = mainEl.scrollTop;
+    var threshold = scrollTop + mainEl.clientHeight * 0.4;
+    var best = sectionLinks[0].dataset.section;
+    sectionLinks.forEach(function(link) {
+      var el = document.getElementById(link.dataset.section);
+      if (!el) return;
+      if (getTop(el) <= threshold) best = link.dataset.section;
+    });
+    sectionLinks.forEach(function(link) {
+      link.classList.toggle('active', link.dataset.section === best);
+    });
+  }
+
+  updateActive();
+  mainEl.addEventListener('scroll', updateActive);
+
+  sectionLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      e.preventDefault();
+      var el = document.getElementById(href.slice(1));
+      if (!el) return;
+      isScrollingTo = true;
+      mainEl.scrollTo({ top: getTop(el), behavior: 'smooth' });
+      sectionLinks.forEach(function(l) { l.classList.toggle('active', l === link); });
+      history.replaceState(null, '', href);
+      setTimeout(function() { isScrollingTo = false; }, 800);
+    });
+  });
+
+  if (window.location.hash) {
+    var el = document.getElementById(window.location.hash.slice(1));
+    if (el) {
+      setTimeout(function() {
+        isScrollingTo = true;
+        mainEl.scrollTo({ top: getTop(el), behavior: 'smooth' });
+        setTimeout(function() { isScrollingTo = false; updateActive(); }, 800);
+      }, 150);
+    }
+  }
+}
+
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded', function() {
   initGalleries();
@@ -343,5 +402,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initVideoExpand();
   initCustomVideoControls();
   initScrollSpy();
+  initHomeScrollSpy();
   initMobileMenu();
 });

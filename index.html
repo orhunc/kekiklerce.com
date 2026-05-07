@@ -23,9 +23,9 @@
   <div class="sidebar-name">Orhun Mersin</div>
   <div class="sidebar-aka">a.k.a. <span class="kekik">kekik</span></div>
   <div class="sidebar-top-links">
-    <a class="sidebar-link active" href="./">home</a>
-    <a class="sidebar-link" href="bio/">bio — contact</a>
-    <a class="sidebar-link" href="cv/">cv</a>
+    <a class="sidebar-link" href="#home" data-section="home">home</a>
+    <a class="sidebar-link" href="#bio" data-section="bio">bio · contact</a>
+    <a class="sidebar-link" href="#cv" data-section="cv">cv</a>
   </div>
   <div class="nav-section" id="section-exhibitions">
     <a class="section-label" href="exhibitions/">installations <span class="chevron">›</span></a>
@@ -78,15 +78,86 @@
 </nav>
 
 <main id="main">
-<div class="main-inner">
-  <div id="home-content">
-    <div class="home-wrap">
-      <div class="home-image">
-        <img src="images/ajda11.jpg" alt="home" width="1280" height="1280" loading="eager" fetchpriority="high" />
+
+  <!-- ── Cover ── -->
+  <div id="home">
+    <div id="home-content">
+      <div class="home-wrap">
+        <div class="home-image">
+          <img src="images/ajda11.jpg" alt="home" width="1280" height="1280" loading="eager" fetchpriority="high" />
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- ── Bio ── -->
+  <div id="bio" class="main-inner">
+    <div class="bio-grid">
+      <div>
+        <p class="bio-text">Orhun Mersin (b. Izmir) is a Berlin-based transdisciplinary researcher and artist working at the intersection of academia, exhibitions, nightlife, and theaters, often under the stage name kekik.</p>
+        <p class="bio-text">Trained as a contemporary dancer and holding a bachelor's degree in computer science, they have been part of the research platform New Practice in Art and Technology at TU–UdK Berlin, supported by a scholarship from Stiftung der Deutschen Wirtschaft. Their practice is rooted in dance, contortion, a critical engagement with AI technologies as performative rather than neutral tools, and an exploration of "dragging" as a methodology: pulling fragments across contexts to break narratives, and open up queer futures. They often combine this with diasporic archive materials from Turkey's and Germany's 1980s–2000s. Lately, they have been a research fellow at the University of Freiburg.</p>
+        <p class="bio-text">Recent work has been presented at Maxim Gorki Theater (Berlin), Sophiensæle (Berlin), DOCK11 (Berlin), Schauspiel Dortmund, HEK Basel, Ars Electronica (Linz), b3 Biennale (Frankfurt), Kaynaş Club (Amsterdam), İÇ İÇE (Berlin), and re:festival (Nürnberg).</p>
+        <div class="bio-contact" style="margin-top:28px;">
+          <span style="font-family:'DM Mono',monospace;font-size:0.64rem;font-weight:500;color:var(--accent);letter-spacing:0.03em;">Contact:</span>
+          <a href="mailto:orikekik@gmail.com">orikekik@gmail.com</a>
+          <a href="https://www.instagram.com/orilerce/" target="_blank" rel="noopener">@orilerce</a>
+          <a href="https://www.instagram.com/kekiklerce/" target="_blank" rel="noopener">@kekiklerce</a>
+        </div>
+      </div>
+      <div>
+        <div class="bio-image">
+          <img src="images/ajda33.jpg" alt="portrait" width="1920" height="1920" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CV ── -->
+  <div id="cv" class="main-inner">
+    <div class="cv-wrap">
+
+      <div class="cv-section">
+        <h2 class="cv-heading">Artistic & Professional Work</h2>
+        <p class="cv-line"><span class="cv-year">2025–26</span><span class="cv-text">University of Freiburg, Imaging Memory and Consolidation Lab — Research Fellow</span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">All The Rivers Residency, Ausland Berlin — Choreographer for "pre:submission" by an*dre neely, Melanie Sien Min Lyn, Frieder Miller</span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">Sophiensæle, Berlin — "Apocalypso" by Justin F. Kennedy<a class="cv-link" href="theatre/#apocalypso">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">HEK Basel, Attention Is All I Need curated by Jonny-Bix Bongers — "Dragging Banu Alkan"<a class="cv-link" href="exhibitions/#dragging-banu-alkan">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">KW Berlin, New Practice — "The Imaginary Intelligence (I.I.)" w/ Nani Gutiérrez<a class="cv-link" href="exhibitions/#imaginary-intelligence">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">HGB Leipzig, (Un)Learning Digitalities Symposium — Workshop: "Unlearning and Dragging: Speculative practices within AI" w/ Yağmur Uçkunkaya<a class="cv-link" href="workshops/#speculative-practices">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">OnCurating Academy, Berlin — Workshop: "Fantasizing through drag, dreaming with deepfakes"<a class="cv-link" href="workshops/#fantasizing-through-drag">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2025</span><span class="cv-text">University of Europe of Applied Sciences, Berlin — Workshop on drag in drag</span></p>
+        <p class="cv-line"><span class="cv-year">2024/25</span><span class="cv-text">NEOLA Art Projects x İç İçe Festival, Köln; Kaynaş Club, Amsterdam — "kekik x kimyon"<a class="cv-link" href="drag/#kekik-x-kimyon">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2024/25</span><span class="cv-text">re:festival Nürnberg; DOCK11 Berlin — "Attitude" by Tomi Paasonen<a class="cv-link" href="theatre/#attitude">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2024</span><span class="cv-text">Kunstverein Heidelberg; Maxim Gorki Theater Berlin — "Bitches on their Deen" w/ Anna Ehrenstein<a class="cv-link" href="exhibitions/#bitches-on-their-deen">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2024</span><span class="cv-text">Maxim Gorki Theater Berlin; Schauspiel Dortmund — "Project O" w/ Anthony Hüseyin</span></p>
+        <p class="cv-line"><span class="cv-year">2024</span><span class="cv-text">Factory Berlin — Panelist at "DIGITAL MIRRORS"</span></p>
+        <p class="cv-line"><span class="cv-year">2023/24</span><span class="cv-text">Ars Electronica Linz; b-Seite Festival Mannheim — "OceanFlight" by Jonny-Bix Bongers<a class="cv-link" href="theatre/#oceanflight">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2024</span><span class="cv-text">Ars Electronica Linz; UdK Berlin — "Ex-Human"<a class="cv-link" href="exhibitions/#ex-human">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2023/24</span><span class="cv-text">b3 Biennale Frankfurt; Ars Electronica Linz; Factory Berlin; UdK Berlin — "Smile to Play"<a class="cv-link" href="exhibitions/#smile-to-play">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2022–23</span><span class="cv-text">Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI), Speech and Language Technology group — Guest Researcher</span></p>
+        <p class="cv-line"><span class="cv-year">2022</span><span class="cv-text">DOCKdigital, DOCK 11 Berlin — "Cell Farming"<a class="cv-link" href="theatre/#cell-farming">more</a></span></p>
+        <p class="cv-line"><span class="cv-year">2022</span><span class="cv-text">TU Berlin & Empiria Theatre Zagreb — Researcher in "Future of Performing Arts with XR Technologies"</span></p>
+        <p class="cv-line"><span class="cv-year">2021–22</span><span class="cv-text">Augmented Robotics Berlin — Game Developer</span></p>
+      </div>
+
+      <div class="cv-section">
+        <h2 class="cv-heading">Education</h2>
+        <p class="cv-line"><span class="cv-year">2022–25</span><span class="cv-text">UdK Berlin & TU Berlin — M.A. Design and Computation</span></p>
+        <p class="cv-line"><span class="cv-year">2018–23</span><span class="cv-text">TU Berlin — B.Sc. Computer Science</span></p>
+        <p class="cv-line"><span class="cv-year">2016–18</span><span class="cv-text">Mimar Sinan University of Fine Arts, Istanbul — State Conservatory for Contemporary Dance</span></p>
+      </div>
+
+      <div class="cv-section">
+        <h2 class="cv-heading">Scholarships & Residencies</h2>
+        <p class="cv-line"><span class="cv-year">2019–25</span><span class="cv-text">Stiftung der Deutschen Wirtschaft (sdw)</span></p>
+        <p class="cv-line"><span class="cv-year">2024</span><span class="cv-text">STIBET I - Grant for master's thesis</span></p>
+        <p class="cv-line"><span class="cv-year">2022</span><span class="cv-text">AR LOOP MASHINE | CREATURE Residence</span></p>
+        <p class="cv-line"><span class="cv-year">2018</span><span class="cv-text">Deutschlandstipendium</span></p>
+      </div>
+
+    </div>
+  </div>
+
 </main>
 
 <script src="main.js"></script>
