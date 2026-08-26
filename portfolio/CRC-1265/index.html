@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orhun Mersin — CRC 1265</title>
+
+  <!-- Private application page: keep out of all search indexes. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="referrer" content="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap"></noscript>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+
+  <!-- Page-local styles: one-off application page, kept out of the shared
+       stylesheet so it cannot affect the rest of the site. -->
+  <style>
+    /* Wider sidebar than the site default (the work titles run two lines).
+       #lightbox/#video-overlay are hardcoded to the 162px default in
+       styles.css, so they move with the sidebar. */
+    #sidebar { width: 230px; min-width: 230px; }
+    #lightbox, #video-overlay { left: 230px; }
+
+    /* Narrower reading column than the site's 1000px, with the extra room
+       weighted to the right: 96px of right padding against 40px of left. */
+    .main-inner {
+      max-width: 880px;
+      padding-right: 96px;
+    }
+
+    /* Sidebar: static works list, no collapsing, no links off this page.
+       The list floats in the vertical middle: equal auto margins above and
+       below it eat all the free space, so the footer still sits at the base. */
+    #section-works {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    #section-works .section-label { cursor: default; }
+    #section-works .nav-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .sidebar-footer { margin-top: 0; }
+    .nav-item { padding-top: 0; padding-bottom: 0; }
+    .nav-kind {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 3px;
+    }
+    .nav-item.active .nav-kind { color: var(--text-light); }
+
+    /* Header */
+    .pf-header {
+      padding-bottom: 24px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pf-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .pf-program {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+      margin-top: 26px;
+    }
+    .pf-selection {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+
+    /* Text full width, credits beneath it — indented to the right-hand side
+       rather than sitting in a side column competing with the text. */
+    .entry-body { display: block; }
+    .entry-aside {
+      margin-top: 26px;
+      margin-left: auto;
+      max-width: 400px;
+      text-align: right;
+    }
+
+    /* Category descriptor above each title. */
+    .pf-kind {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    /* Media block: videos then stacked full-width stills. */
+    .entry-gallery-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+    .pf-video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: color-mix(in srgb, var(--bg) 15%, #000);
+    }
+    .pf-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Click-to-play facade: our own thumbnail, and nothing is requested from
+       Vimeo/Drive until a viewer actually clicks. */
+    .pf-play {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+      background: none;
+      display: block;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .pf-play img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+    .pf-play:hover img { opacity: 0.82; }
+    .pf-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      padding-left: 4px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .pf-play:hover .pf-play-icon,
+    .pf-play:focus-visible .pf-play-icon {
+      background: var(--accent);
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+    .pf-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.02em;
+      margin-top: 8px;
+    }
+    /* Stills stay a simple stacked list, but at a uniform, smaller width so
+       they read as a contact sheet rather than filling the column. Click any
+       one to see it full size in the lightbox. */
+    .pf-images {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .pf-images img {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+    }
+    /* Keep the photo credit under the centred stack, not off at the margin. */
+    .pf-images + .pf-caption { text-align: center; }
+
+    .pf-footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+    }
+    .pf-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .pf-contact a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      font-weight: 300;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s;
+    }
+    .pf-contact a:hover { opacity: 0.6; }
+    .pf-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.03em;
+      margin-top: 18px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .pf-name { font-size: 1.25rem; }
+      .pf-header { margin-bottom: 36px; }
+      /* Re-assert the full-width overlays: the rule above outranks the
+         mobile one in styles.css purely by source order. */
+      #lightbox, #video-overlay { left: 0; }
+      .pf-play-icon { width: 48px; height: 48px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sidebar-name">Orhun Mersin</div>
+      <div class="pf-program">
+      “Artist in Residence” Program 2026<br/>
+      CRC 1265 “Re-Figuration of Spaces”
+    </div>
+  <div class="nav-section open" id="section-works">
+    <span class="section-label">selected works <span class="chevron">›</span></span>
+    <div class="nav-items">
+      <a class="nav-item" data-entry="apocalypso" href="#apocalypso">Apocalypso<span class="nav-kind">Choreography and Speculative Opera</span></a>
+      <a class="nav-item" data-entry="oceanflight" href="#oceanflight">Oceanflight<span class="nav-kind">Media Dance Performance</span></a>
+      <a class="nav-item" data-entry="dragging-banu-alkan" href="#dragging-banu-alkan">Dragging Banu Alkan<span class="nav-kind">Video Series</span></a>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    © 2026
+  </div>
+</nav>
+
+<main id="main">
+<div class="main-inner content-section">
+
+
+<!-- ── 1. Apocalypso ── -->
+<div class="entry" id="apocalypso">
+  <div class="entry-header">
+    <div class="entry-title">Apocalypso</div>
+    <div class="entry-meta">2025–26 — Sophiensæle, Berlin · Dansens Hus, Stockholm · dir. Justin F. Kennedy</div>
+  </div>
+  <div class="entry-body">
+    <p class="entry-text">When does the swarm become the horde? What do zombies teach us about organizing? And what can robots show us about care?<br/><br/>Apocalypso is choreography and speculative opera, exploring apocalypse through an Afro-pessimist lens. At its heart lies the ocean – as body, archive, and a space of both memory and becoming. Drawing from Tidalectics, a concept coined by Barbadian poet and historian Kamau Brathwaite, the performance weaves together contemporary Caribbean mythology with intersectional and ecocritical perspectives.<br/><br/>The title – a blend of “Apocalypse” (Greek: “to uncover hidden places”) and “Calypso” (an Afro-Caribbean musical tradition that addresses pressing political realities in a disarmingly casual tone) signals a work that reveals social grievances while at the same time seducing its audience. Set after the fictional Apocalypso of Internal Combustion, where hyper-individualist humans have collapsed in on themselves, and hybrid beings like mermaids, zombies, and animatrons rise to the surface.<br/><br/>These figures embody queer Black futures, Black femmedom, fluidity, and collective resistance. They raise questions of care, embodiment, labor, and survival beyond neoliberal notions of inclusion. Apocalypso critiques hollow ideals of togetherness, often staged in European performance spaces.</p>
+    <div class="entry-aside">
+      <div class="entry-credits"><strong>Dancers: Orhun Mersin, Corey Scott-Gilbert, Willie Stark</strong>Artistic direction, performance: Justin F Kennedy<br/>Composition, performance: Guillermo E. Brown, Shannon Funchess<br/>Artist Talk: Ligia Lewis<br/>Set design: Makode Linde<br/>Costume design: SADAK<br/>Lighting design: Joseph Wegmann<br/>Prosthetic design: Una Ryu<br/>Headpieces, graphic design: Evan Loxton<br/>Technical direction: Lui Marschewski<br/>Production: Diana Paiva, Anna von Glasenapp / high expectations, Hilary Fox<br/><br/>A production by Justin F Kennedy in co-production with Sophiensæle. Funded by the Berlin Senate Department for Culture and Social Cohesion and the Fonds Darstellende Künste with funds from the Federal Government Commissioner for Culture and the Media.</div>
+    </div>
+  </div>
+  <div class="entry-gallery-wrap">
+    <div>
+      <div class="pf-images">
+        <img src="../../images/11648.webp" alt="Apocalypso" width="1012" height="759" loading="eager" fetchpriority="high" />
+        <img src="../../images/apo1.jpg" alt="Apocalypso" width="1200" height="630" loading="lazy" />
+        <img src="../../images/11610.webp" alt="Apocalypso" width="1012" height="759" loading="lazy" />
+        <img src="../../images/2poster.jpg" alt="Apocalypso" width="1080" height="1035" loading="lazy" />
+      </div>
+      <div class="pf-caption">© Mayra Wallraff</div>
+    </div>
+    <div>
+      <div class="pf-video" data-video="https://player.vimeo.com/video/1157341830?h=95b6ab464d&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;autoplay=1">
+        <button class="pf-play" type="button" aria-label="Play the Apocalypso trailer">
+          <img src="../../images/apo-tb.jpg" alt="" width="2508" height="1417" loading="lazy" />
+          <span class="pf-play-icon" aria-hidden="true">&#9654;</span>
+        </button>
+      </div>
+      <div class="pf-caption">Trailer — 6:35</div>
+      <br/>
+      <a class="pub-link" href="https://vimeo.com/1149748221/97f858de30" target="_blank" rel="noopener">Full Performance (1:25:18)</a>
+    </div>
+  </div>
+</div>
+
+<hr class="entry-separator" />
+
+<!-- ── 2. Oceanflight ── -->
+<div class="entry" id="oceanflight">
+  <div class="entry-header">
+    <div class="entry-title">Oceanflight</div>
+    <div class="entry-meta">2022/2024 — Ars Electronica, Linz · dir. Jonny-Bix Bongers</div>
+  </div>
+  <div class="entry-body">
+    <p class="entry-text">The performance questions how we present ourselves in the digital realm, exploring avatars and metaverses as essential aspects of our future society. Drawing on Gilbert Simondon's theory of transindividualism, Oceanflight combines motion tracking and gaming software to create an interconnected dance performance. The relation between dancer and avatar is not a merging of the two but an unfinished process, out of which something third emerges. The choreography goes back to Merce Cunningham, who in LifeForms (1991) and Biped (1999) used the machine's inability to model a body as a generative constraint. Here that constraint becomes the limitations of motion capture itself, letting bodies fold into impossible geometries when the tracking breaks. The transdisciplinary team invites viewers to reflect on the transformative power of digital self-expression and its impact on our identities.<br/><br/>This work was developed as an MA project by Jonny-Bix Bongers as part of the Design and Computation program. The texts and the movement research are based on and inspired by original developments as well as Bertolt Brecht's "Flight across the Ocean" and Jacques Lacan's "The Mirror Stage as Formative of the I Function."</p>
+    <div class="entry-aside">
+      <div class="entry-credits"><strong>Dancer: Orhun Mersin</strong>Concept, Music, Development: Jonny-Bix Bongers<br/>Development: Christian Schmidts<br/>Camera: Fang Tsai</div>
+    </div>
+  </div>
+  <div class="entry-gallery-wrap">
+    <div class="pf-images">
+      <img src="../../images/ocean1.jpg" alt="Oceanflight" width="4453" height="2640" loading="lazy" />
+      <img src="../../images/ocean1.webp" alt="Oceanflight" width="2000" height="1125" loading="lazy" />
+      <img src="../../images/ocean2.jpg" alt="Oceanflight" width="3294" height="2688" loading="lazy" />
+    </div>
+    <div>
+      <div class="pf-video" data-video="https://drive.google.com/file/d/1rE6tIKRXZWsrlGAUBHMog35vDyVILb2H/preview">
+        <button class="pf-play" type="button" aria-label="Play the Oceanflight full video">
+          <img src="../../images/ocean-tn.jpg" alt="" width="1830" height="1037" loading="lazy" />
+          <span class="pf-play-icon" aria-hidden="true">&#9654;</span>
+        </button>
+      </div>
+      <div class="pf-caption">Full video — 11:03</div>
+    </div>
+  </div>
+</div>
+
+<hr class="entry-separator" />
+
+<!-- ── 3. Dragging Banu Alkan ── -->
+<div class="entry" id="dragging-banu-alkan">
+  <div class="entry-header">
+    <div class="entry-title">Dragging Banu Alkan</div>
+    <div class="entry-meta">2025 — Video 05:17 — HEK Basel</div>
+  </div>
+  <div class="entry-body">
+    <p class="entry-text">Fantasizing through drag, hallucinating through AI. Considering deepfakes, voice cloning, and lip-synch animations as "drag technologies," the femme-fatale 80s movie star Banu Alkan becomes the center of a queer re-imagination. In this gender-glitched hallucination, the "Turkish Aphrodite" is intertwined with mainstream queer-feminist scholars — is this her emancipation? We cannot know, we better keep fantasizing.<br/><br/><i>"She finds herself in a conversation with Aphrodite, being reminded what womanhood means."</i><br/><br/>The work materialises the research of my master's thesis, <i>Dragging the Latent, Unlearning the Model — Speculative Practices within Artificial Imaginaries</i>, co-written with Yağmur Uçkunkaya for the joint research master Design and Computation at UdK Berlin and TU Berlin. The thesis treats the latent space of generative models as a spatial structure in which identity is encoded as directions and distances, and develops two artistic methods for intervening in it: unlearning the model, which uses methods of pruning and works with non-knowledge and uncertainty as generative forces, and dragging the latent, which appropriates adversarial machine learning techniques as a queer practice of disidentification. This work follows the second method, turning drag into a methodology and applying it to Turkish archival and nostalgic film. Following Legacy Russell's glitch feminism and Jack Halberstam's queer art of failure, glitches and failures are treated as forms of resistance. The video belongs to an ongoing series of drag performances working with archival material through the dragging of latent spaces in open-source deepfake models.</p>
+    <div class="entry-aside">
+      <div class="entry-credits"><strong>Concept, direction, research and development by Orhun Mersin</strong>Part of the exhibition "Attention is All I Need" <br/>In collaboration with Artists: allapopp, Carla Streckwall, Charmaine Poh, Damjanski, Kim Albrecht, Orhun Mersin aka kekik <br/>Curated by Jonny-Bix Bongers <br/> In cooperation: ONCURATING Academy</div>
+    </div>
+  </div>
+  <div class="entry-gallery-wrap">
+    <div class="pf-images">
+      <img src="../../images/banu0.jpg" alt="Dragging Banu Alkan" width="1920" height="1080" loading="lazy" />
+      <img src="../../images/banu1.jpg" alt="Dragging Banu Alkan" width="1766" height="1117" loading="lazy" />
+      <img src="../../images/banu3.jpg" alt="Dragging Banu Alkan" width="2042" height="1151" loading="lazy" />
+    </div>
+    <div>
+      <div class="pf-video" data-video="https://player.vimeo.com/video/1071410385?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;autoplay=1">
+        <button class="pf-play" type="button" aria-label="Play Dragging Banu Alkan">
+          <img src="../../images/banu2.jpg" alt="" width="1986" height="1128" loading="lazy" />
+          <span class="pf-play-icon" aria-hidden="true">&#9654;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="pf-footer">
+    <div class="pf-contact">
+      <a href="mailto:orikekik@gmail.com">orikekik@gmail.com</a>
+      <a href="https://kekiklerce.com" target="_blank" rel="noopener">kekiklerce.com</a>
+    </div>
+  </footer>
+
+</div>
+</main>
+
+<div id="lightbox">
+  <button id="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+<script src="../../main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Click-to-enlarge for the static stills (main.js only binds galleries). */
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    if (lb && lbImg) {
+      document.addEventListener('click', function (e) {
+        var img = e.target.closest('.pf-images img');
+        if (!img) return;
+        lbImg.src = img.src;
+        lb.classList.add('open');
+      });
+    }
+
+    /* Click-to-play: swap the poster for the real player only on demand. */
+    document.querySelectorAll('.pf-video[data-video]').forEach(function (wrap) {
+      var btn = wrap.querySelector('.pf-play');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.src = wrap.getAttribute('data-video');
+        frame.title = btn.getAttribute('aria-label') || '';
+        frame.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+        frame.setAttribute('allowfullscreen', '');
+        wrap.replaceChild(frame, btn);
+      });
+    });
+  });
+</script>
+</body>
+</html>

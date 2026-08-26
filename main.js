@@ -257,6 +257,16 @@ function initVideoExpand() {
   });
 }
 
+/* ── PRESS TOGGLE ── */
+function initPressToggle() {
+  var toggle = document.getElementById('press-toggle');
+  var section = document.getElementById('section-press');
+  if (!toggle || !section) return;
+  toggle.addEventListener('click', function() {
+    section.classList.toggle('open');
+  });
+}
+
 /* ── MOBILE MENU ── */
 function initMobileMenu() {
   var sidebar = document.getElementById('sidebar');
@@ -403,5 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initCustomVideoControls();
   initScrollSpy();
   initHomeScrollSpy();
+  initPressToggle();
   initMobileMenu();
 });

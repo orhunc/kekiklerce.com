@@ -17,7 +17,10 @@
       "Bash(for f:*)",
       "Bash(sed -i 's/aka kekik/a.k.a. kekik/g' \"$f\")",
       "Bash(sed -i 's|<a class=\"\"sidebar-link\"\" href=\"\"../bio/\"\">bio</a>|<a class=\"\"sidebar-link\"\" href=\"\"../bio/\"\">bio — contact</a>|g' \"$f\")",
-      "Bash(sed -i 's|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio</a>|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio — contact</a>|g' \"$f\")"
+      "Bash(sed -i 's|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio</a>|<a class=\"\"sidebar-link\"\" href=\"\"bio/\"\">bio — contact</a>|g' \"$f\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"c:\\\\Users\\\\ocagl\\\\Desktop\\\\Workspaces\\\\website\\\\images\\\\mk-poster.jpg\"\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))"
     ]
   }
 }
