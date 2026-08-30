@@ -126,6 +126,13 @@
       aspect-ratio: 16 / 9;
       background: color-mix(in srgb, var(--bg) 15%, #000);
     }
+    /* Portrait-shot footage: constrain by width instead of letting a 16:9 box
+       stretch a vertical video absurdly tall. */
+    .pf-video.pf-video-portrait {
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
+      margin: 0 auto;
+    }
     .pf-video iframe {
       position: absolute;
       inset: 0;
@@ -348,16 +355,24 @@
     <div class="entry-meta">2024 — 2-Station Webcam-Based Installation · Ars Electronica Festival, Linz · Universität der Künste Berlin</div>
   </div>
   <div class="entry-body">
-    <p class="entry-text">Ex-Human takes its title from Eduardo Viveiros de Castro's account of Amerindian perspectivism, in which animals have descended from humans rather than the reverse. Animals are ex-humans, those that used to be what we are; animality is not the condition we share with other species, humanity is. A fictional AI host, TransLator, holds this position in the installation, discussing their condition from an anthropological standpoint and commenting on the place the viewer occupies when a new kind of intelligence emerges. From TransLator's perspective, that place is the position of an ex-human. Viveiros de Castro suggests that the work of an anthropologist is the work of a translator, and that to translate is to betray, because something is always lost or misunderstood in the passage; speculating on a situation in a near future is also an exercise of translation, and also a form of betrayal, but the question is who to betray.<br/><br/>The work is a two-station installation that explores the affective and philosophical implications of deepfake technology. Participants are invited to take a selfie without knowing its intended use, which then automatically triggers a chain of algorithmic processes producing short deepfake videos of them at a second station across the room. This immediate, non-consensual generation mirrors the rapid and often unseen circulation of synthetic media online. The two stations are set apart deliberately: moving away from the one-screen, one-person paradigm, the screens, webcams and computers are treated as sculptural elements, and the room the visitor crosses between the selfie and its return becomes part of the work. The anticipation of seeing oneself is broken on purpose, since visitors encounter a different version of themselves in the room, and TransLator returns at intervals to disrupt the fascination with looking only at oneself.<br/><br/>Moving beyond common concerns of fraud, the work focuses on deepfake technology's seductive and immersive qualities, questioning its potential to trigger genuine affect, inspire fluid self-expression, or serve as a tool for digital anonymity and resistance. Rather than the perfect results of deepfake models, it looks for their imperfections, challenging them with what they were not trained for, such as drag queens and other faces the models read as unrealistic. Echoing Paul Virilio's idea that every invention casts a shadow, it asks what the shadow of this one might also make possible.</p>
+    <p class="entry-text">Ex-Human takes its title from the Brazilian anthropologist Eduardo Viveiros de Castro's account of Amerindian perspectivism, in which animals have descended from humans rather than the reverse. Animals are ex-humans, those that used to be what we are; animality is not the condition we share with other species, humanity is. Viveiros de Castro also suggests that the work of an anthropologist is the work of a translator, and that to translate is to betray, because something is always lost or misunderstood in the passage; speculating on a near future is an exercise of translation too, and also a form of betrayal, but the question is who to betray. A fictional AI host, TransLator (Orhun Mersin), holds this position in the installation, discussing their condition from an anthropological standpoint and commenting on the place the viewer occupies when a new kind of intelligence emerges, which from their perspective is that of an ex-human.<br/><br/>The work is a two-station installation that explores the affective and philosophical implications of deepfake technology. Participants are invited to take a selfie without knowing its intended use, which then automatically triggers a chain of algorithmic processes producing short deepfake videos of them at a second station across the room. This immediate, non-consensual generation mirrors the rapid and often unseen circulation of synthetic media online. The two stations are set apart deliberately: moving away from the one-screen, one-person paradigm, the screens, webcams and computers are treated as sculptural elements, and the room the visitor crosses between the selfie and its return becomes part of the work. The anticipation of seeing oneself is broken on purpose, since visitors encounter a different version of themselves in the room, and TransLator returns at intervals to disrupt the fascination with looking only at oneself.<br/><br/>Moving beyond common concerns of fraud, the work focuses on deepfake technology's seductive and immersive qualities, questioning its potential to trigger genuine affect, inspire fluid self-expression, or serve as a tool for digital anonymity and resistance. Rather than the perfect results of deepfake models, it looks for their imperfections, challenging them with what they were not trained for, such as drag queens and other faces the models read as unrealistic. Echoing Paul Virilio's idea that every invention casts a shadow, it asks what the shadow of this one might also make possible.</p>
     <div class="entry-aside">
       <div class="entry-credits"><strong>AI engineering, drag artist: Orhun Mersin</strong>Script and editing: Nani Gutiérrez<br/>Sound: Yağmur Uçkunkaya<br/><br/>A work by 3k collective — M.A. Design &amp; Computation, UdK/TU Berlin</div>
-      <a class="pub-link" href="https://vimeo.com/945723195" target="_blank" rel="noopener">video</a>
     </div>
   </div>
   <div class="entry-gallery-wrap">
     <div class="pf-images">
       <img src="../../images/ex2.jpg" alt="Ex-human" width="1398" height="1242" loading="lazy" />
       <img src="../../images/ex1.jpg" alt="Ex-human" width="1654" height="1420" loading="lazy" />
+    </div>
+    <div>
+      <div class="pf-video pf-video-portrait" data-video="https://player.vimeo.com/video/945723195?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1&amp;autoplay=1">
+        <button class="pf-play" type="button" aria-label="Play the Ex-human video">
+          <img src="../../images/ex-human-tn.jpg" alt="" width="720" height="1220" loading="lazy" />
+          <span class="pf-play-icon" aria-hidden="true">&#9654;</span>
+        </button>
+      </div>
+      <div class="pf-caption">Video</div>
     </div>
   </div>
 </div>
